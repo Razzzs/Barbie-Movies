@@ -1,7 +1,7 @@
 # Barbie-Movies
 Barbie Movie/Show Information Summary:
 
-The script extracts information about the Barbie movie/show from IMDb, focusing on the release date and popularity. Here's what we found:
+The script extracts information about the Barbie movie/show from IMDb, focusing on the release date and popularity.
 
 Release Date:
 The script retrieves the release date of the Barbie movie/show. If available, the exact release date is displayed; otherwise, a message indicates that the release date could not be found.
