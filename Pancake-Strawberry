@@ -1,0 +1,92 @@
+# number 1 step
+
+#in bash = pip install requests beautifulsoup4
+
+import requests
+from bs4 import BeautifulSoup
+
+def get_barbie_info():
+    # IMDb URL for the Barbie movie/show
+    url = "https://www.imdb.com/title/tt1529740/"  # Update this with the correct IMDb URL
+
+    # Send a GET request to the IMDb URL
+    response = requests.get(url)
+
+    # Check if the request was successful (status code 200)
+    if response.status_code == 200:
+        # Parse the HTML content of the page
+        soup = BeautifulSoup(response.text, 'html.parser')
+
+        # Extract release date
+        release_date_element = soup.find("a", {"title": "See more release dates"})
+        release_date = release_date_element.text.strip() if release_date_element else "Release date not found"
+
+        # Extract popularity
+        popularity_element = soup.find("span", {"class": "global-sprite popularity"})
+        popularity = popularity_element.find_next("strong").text.strip() if popularity_element else "Popularity not found"
+
+        return release_date, popularity
+    else:
+        return "Error: Unable to fetch data", None
+
+# Get Barbie information
+release_date, popularity = get_barbie_info()
+
+# Display the information
+print(f"Release Date: {release_date}")
+print(f"Popularity: {popularity}")
+
+
+#number 2 step
+
+#in bash = pip install matplotlib
+
+import requests
+from bs4 import BeautifulSoup
+import matplotlib.pyplot as plt
+
+def get_barbie_info():
+    # IMDb URL for the Barbie movie/show
+    url = "https://www.imdb.com/title/tt1529740/"  # Update this with the correct IMDb URL
+
+    # Send a GET request to the IMDb URL
+    response = requests.get(url)
+
+    # Check if the request was successful (status code 200)
+    if response.status_code == 200:
+        # Parse the HTML content of the page
+        soup = BeautifulSoup(response.text, 'html.parser')
+
+        # Extract release date
+        release_date_element = soup.find("a", {"title": "See more release dates"})
+        release_date = release_date_element.text.strip() if release_date_element else "Release date not found"
+
+        # Extract popularity
+        popularity_element = soup.find("span", {"class": "global-sprite popularity"})
+        popularity = popularity_element.find_next("strong").text.strip() if popularity_element else "Popularity not found"
+
+        return release_date, popularity
+    else:
+        return "Error: Unable to fetch data", None
+
+def plot_barbie_info(release_date, popularity):
+    # Create a bar chart
+    labels = ['Release Date', 'Popularity']
+    values = [release_date, popularity]
+
+    plt.bar(labels, values, color=['blue', 'green'])
+    plt.title('Barbie Movie/Show Information')
+    plt.ylabel('Information')
+    plt.show()
+
+# Get Barbie information
+release_date, popularity = get_barbie_info()
+
+# Display the information
+print(f"Release Date: {release_date}")
+print(f"Popularity: {popularity}")
+
+# Plot the information
+plot_barbie_info(release_date, popularity)
+
+
